@@ -44,7 +44,7 @@ public class JwtAuthenticationController {
 	
 	@Autowired
 	UserRepository userRepository;
-
+//for authentication where username and password will verify
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody JwtRequest authenticationRequest) throws Exception {
 
@@ -57,6 +57,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 
+	//for registration purpose where this url need all the details of user
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
 			if((userRepository.findByUsername(user.getUsername()) == null) && (userRepository.findByPan(user.getPan())== null)) {

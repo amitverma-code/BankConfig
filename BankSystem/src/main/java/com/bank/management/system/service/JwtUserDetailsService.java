@@ -17,25 +17,13 @@ import com.bank.management.system.repository.UserRepository;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		if ("shubham".equals(username)) {
-//			return new User("shubham", "$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6",
-//					new ArrayList<>());
-//		} else {
-//			throw new UsernameNotFoundException("User not found with username: " + username);
-//		}
-//	}
-
-	
 	@Autowired
 	private UserRepository userDao;
 
-	//
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 
-	//
+	//fetching username
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDao user = userDao.findByUsername(username);
@@ -46,7 +34,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 
-	//
+	//saving user details
 	public UserDao save(UserDto user) {
 		UserDao newUser = new UserDao();
 		newUser.setUsername(user.getUsername());
